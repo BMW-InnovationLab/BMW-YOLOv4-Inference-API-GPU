@@ -1,0 +1,25 @@
+FROM nvidia/cuda:10.1-devel-ubuntu18.04
+
+LABEL maintainer="antoine.charbel@inmind.ai"
+
+COPY docker/requirements.txt .
+
+COPY src/main /main
+
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+  locales \
+  software-properties-common \
+  python3-pip python3-dev
+
+RUN pip3 install --upgrade pip
+RUN pip3 install -r requirements.txt
+
+# Set the locale (required for uvicorn)
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+  dpkg-reconfigure --frontend=noninteractive locales && \
+  update-locale LANG=en_US.UTF-8
+ENV LANG en_US.UTF-8
+
+WORKDIR /main
+
+CMD ["uvicorn", "start:app", "--host", "0.0.0.0", "--port", "1234"]

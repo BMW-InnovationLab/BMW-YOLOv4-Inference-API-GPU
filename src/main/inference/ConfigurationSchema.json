@@ -1,0 +1,41 @@
+{
+  "type": "object",
+  "properties": {
+    "inference_engine_name": {
+      "type": "string"
+    },
+    "detection_threshold": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "nms_threshold": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "hier_threshold": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "framework": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "network": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "inference_engine_name",
+    "detection_threshold",
+    "nms_threshold",
+    "hier_threshold",
+    "framework",
+    "type",
+    "network"
+  ]
+}

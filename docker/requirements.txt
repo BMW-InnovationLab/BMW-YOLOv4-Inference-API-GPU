@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+numpy
+opencv-python
+python-multipart
+pillow
+python-socketio
+requests
+aiofiles
+jsonschema
