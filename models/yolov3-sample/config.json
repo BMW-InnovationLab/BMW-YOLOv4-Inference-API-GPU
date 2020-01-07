@@ -1,0 +1,9 @@
+    {
+        "inference_engine_name": "yolov3_darknet_detection",
+        "detection_threshold": 0.6,
+        "nms_threshold": 0.6,
+        "hier_threshold": 0.6,
+        "framework": "yolo",
+        "type": "detection",
+        "network": "yolov3"
+    }
