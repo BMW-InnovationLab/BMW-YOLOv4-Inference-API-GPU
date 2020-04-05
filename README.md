@@ -160,9 +160,9 @@ Inside each subfolder there should be a:
   ```json
     {
       "inference_engine_name": "yolov3_darknet_detection",
-      "detection_threshold": <between_0_and_1>,
-      "nms_threshold": <between_0_and_1>,
-      "hier_threshold": <between_0_and_1>,
+      "detection_threshold": 0.6,
+      "nms_threshold": 0.45,
+      "hier_threshold": 0.5,
       "framework": "yolo",
       "type": "detection",
       "network": "network_name"
