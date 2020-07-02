@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.1-devel-ubuntu18.04
+From  nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
 
 LABEL maintainer="antoine.charbel@inmind.ai"
 
@@ -6,11 +6,36 @@ COPY docker/requirements.txt .
 
 COPY src/main /main
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
   locales \
+  python3-pip python3-dev \
   software-properties-common \
-  python3-pip python3-dev
+  ca-certificates \
+  build-essential \
+  cmake \
+  git \
+  libopencv-dev 
 
+RUN git clone http://github.com/opencv/opencv.git && cd opencv \
+	  && git checkout 3.3.1 					\
+    && mkdir build && cd build              \
+    && cmake -D CMAKE_BUILD_TYPE=RELEASE    \
+        -D CMAKE_INSTALL_PREFIX=/usr/local  \
+        -D WITH_CUDA=OFF                     \
+        -D WITH_OPENCL=OFF                  \
+        -D ENABLE_FAST_MATH=1               \
+        -D CUDA_FAST_MATH=1                 \
+        -D WITH_CUBLAS=1                    \
+        -D BUILD_DOCS=OFF                   \
+        -D BUILD_PERF_TESTS=OFF             \
+        -D BUILD_TESTS=OFF                  \
+        ..                                  \
+    && make -j `nproc`                      \
+    && make install                         \
+    && cd ${HOME} && rm -rf ./opencv/
+
+
+RUN pip3 install setuptools wheel
 RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
@@ -23,3 +48,4 @@ ENV LANG en_US.UTF-8
 WORKDIR /main
 
 CMD ["uvicorn", "start:app", "--host", "0.0.0.0", "--port", "1234"]
+

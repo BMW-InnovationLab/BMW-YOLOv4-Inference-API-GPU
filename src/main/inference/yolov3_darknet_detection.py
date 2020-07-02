@@ -208,16 +208,36 @@ class InferenceEngine(AbstractInferenceEngine):
 			for i in range(self.meta.classes):
 				if dets[j].prob[i] > detection_threshold:
 					b = dets[j].bbox
+					left = (b.x - b.w / 2) 
+
+					right = (b.x + b.w / 2)
+
+					top = (b.y - b.h / 2) 
+
+					bottom = (b.y + b.h / 2)
+
+
+
+					if (left < 0):
+						left = 0
+					if (right > im.w - 1):
+						right = im.w - 1
+					if (top < 0):
+						top = 0
+					if (bottom > im.h - 1):
+						bottom = im.h - 1
+					
+
 					res.append(
 						{
 							'ObjectClassId': i,
 							'ObjectClassName': self.meta.names[i].decode('utf-8'),
 							'confidence': dets[j].prob[i] * 100,
 							'coordinates': {
-								'left': int(b.x) - int(b.w / 2),
-								'top': int(b.y) - int(b.h / 2),
-								'right': int(b.x) + int(b.w / 2),
-								'bottom': int(b.y) + int(b.h / 2)
+								'left': left,
+								'top': top,
+								'right': right,
+								'bottom': bottom
 							}
 						}
 					)
