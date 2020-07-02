@@ -73,7 +73,7 @@ class DeepLearningService:
         :return:
         """
         for model in model_names:
-s            self.load_model(model)
+            self.load_model(model)
 
     async def run_model(self, model_name, input_data, draw, predict_batch):
         """
