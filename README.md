@@ -1,12 +1,14 @@
-# YOLOv3 Darknet GPU Inference API
+# YOLOv4-v3 Darknet GPU Inference API
 
-This is a repository for an object detection inference API using the Yolov3 Darknet framework.
+This is a repository for an object detection inference API using the Yolov4 and  Yolov3  Darknet framework.
+
+This Repository has also backward compatibility for state of the art Yolov3 models.
 
 This repo is based on [AlexeyAB darknet repository](https://github.com/AlexeyAB/darknet).
 
 The inference REST API works on GPU. It's supported only on Linux Operating systems.
 
-Models trained using our training Yolov3 repository can be deployed in this API. Several object detection models can be loaded and used at the same time.
+Models trained using our training automation Yolov3 and Yolov4  repository can be deployed in this API. Several object detection models can be loaded and used at the same time.
 
 ![predict image](./docs/4.gif)
 
@@ -50,12 +52,12 @@ Install NVIDIA Drivers (410.x or higher) and NVIDIA Docker for GPU by following 
 In order to build the project run the following command from the project's root directory:
 
 ```sh
-sudo docker build -t yolov3_inference_api_gpu -f ./docker/dockerfile .
+sudo docker build -t yolov4_inference_api_gpu -f ./docker/dockerfile .
 ```
 ### Behind a proxy
 
 ```sh
-sudo docker build --build-arg http_proxy='' --build-arg https_proxy='' -t yolov3_inference_api_gpu -f ./docker/dockerfile .
+sudo docker build --build-arg http_proxy='' --build-arg https_proxy='' -t yolov4_inference_api_gpu -f ./docker/dockerfile .
 ```
 
 ## Run The Docker Container
@@ -65,7 +67,7 @@ To run the API go the to the API's directory and run the following:
 #### Using Linux based docker:
 
 ```sh
-sudo NV_GPU=0 nvidia-docker run -itv $(pwd)/models:/models -p <docker_host_port>:1234 yolov3_inference_api_gpu
+sudo NV_GPU=0 nvidia-docker run -itv $(pwd)/models:/models -p <docker_host_port>:1234 yolov4_inference_api_gpu
 ```
 The <docker_host_port> can be any unique port of your choice.
 
@@ -145,7 +147,7 @@ Inside each subfolder there should be a:
 - Cfg file (yolo-obj.cfg): contains the configuration of the model
 
 - data file (obj.data): contains number of classes and names file path
- 
+
   ```
   classes=<number_of_classes>
   names=/models/<model_name>/obj.names
@@ -157,9 +159,10 @@ Inside each subfolder there should be a:
 
 - Config.json (This is a json file containing information about the model)
 
+
   ```json
     {
-      "inference_engine_name": "yolov3_darknet_detection",
+      "inference_engine_name": "yolov4_darknet_detection",
       "detection_threshold": 0.6,
       "nms_threshold": 0.45,
       "hier_threshold": 0.5,
@@ -169,7 +172,7 @@ Inside each subfolder there should be a:
     }
   ```
   P.S
-
+  - You can choose **"inference_engine_name"**: between **yolov4_darknet_detection** and **yolov3_darknet_detection** depending on the model you have.
   - You can change detection_threshold, nms_threshold, and hier_threshold values while running the API
   - The API will return bounding boxes with a detection higher than the detection_threshold value. A high detection_threshold can show you only accurate predictions
 
@@ -205,3 +208,12 @@ Inside each subfolder there should be a:
 
 ## Acknowledgment
 
+[inmind.ai](https://inmind.ai)
+
+[robotron.de](https://robotron.de)
+
+Antoine Charbel, inmind.ai , Beirut, Lebanon
+
+Charbel El Achkar, Beirut, Lebanon
+
+Hadi Koubeissy, Beirut, Lebanon 
