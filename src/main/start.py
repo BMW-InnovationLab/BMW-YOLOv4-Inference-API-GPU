@@ -19,6 +19,7 @@ app = FastAPI(version='1.0', title='BMW InnovationLab YOLOv3-v4 darknet inferenc
 			  description="<b>API for performing YOLOv3-v4 darknet inference</b></br></br>"
 						  "<b>Contact the developers:</b></br>"
 						  "<b>Antoine Charbel: <a href='mailto:antoine.charbel@inmind.ai'>antoine.charbel@inmind.ai</a></b></br>"
+	      					  "<b>Hadi Koubeissy: <a href='mailto:123.hadikoubeissy@gmail.com'>123.hadikoubeissy@gmail.com</a></b></br>"
 						  "<b>BMW Innovation Lab: <a href='mailto:innovation-lab@bmw.de'>innovation-lab@bmw.de</a></b>")
 
 
@@ -59,7 +60,6 @@ async def detect_custom(model: str = Form(...), image: UploadFile = File(...)):
 	predict_batch = False
 	try:
 		output = await dl_service.run_model(model, image, draw_boxes, predict_batch)
-		error_logging.info('request successful;' + str(output))
 		return output
 	except ApplicationError as e:
 		error_logging.warning(model + ';' + str(e))
