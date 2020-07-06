@@ -1,8 +1,8 @@
-# YOLOv4-v3 Darknet GPU Inference API
+# YOLOv3-v4 Darknet GPU Inference API
 
-This is a repository for an object detection inference API using the Yolov4 and  Yolov3  Darknet framework.
+This is a repository for an object detection inference API using the Yolov3 Darknet framework.
 
-This Repository has also backward compatibility for state of the art Yolov3 models.
+This Repository has also support for state of the art Yolov4 models 
 
 This repo is based on [AlexeyAB darknet repository](https://github.com/AlexeyAB/darknet).
 
@@ -159,10 +159,9 @@ Inside each subfolder there should be a:
 
 - Config.json (This is a json file containing information about the model)
 
-
   ```json
     {
-      "inference_engine_name": "yolov4_darknet_detection",
+      "inference_engine_name": "yolov3_darknet_detection",
       "detection_threshold": 0.6,
       "nms_threshold": 0.45,
       "hier_threshold": 0.5,
@@ -172,7 +171,7 @@ Inside each subfolder there should be a:
     }
   ```
   P.S
-  - You can choose **"inference_engine_name"**: between **yolov4_darknet_detection** and **yolov3_darknet_detection** depending on the model you have.
+
   - You can change detection_threshold, nms_threshold, and hier_threshold values while running the API
   - The API will return bounding boxes with a detection higher than the detection_threshold value. A high detection_threshold can show you only accurate predictions
 
@@ -182,7 +181,6 @@ Inside each subfolder there should be a:
     <thead align="center">
         <tr>
             <th></th>
-            <th>Windows</th>
             <th colspan=3>Ubuntu</th>
         </tr>
     </thead>
@@ -190,18 +188,16 @@ Inside each subfolder there should be a:
         <tr>
             <th>Network\Hardware</th>
             <th>Intel Xeon CPU 2.3 GHz</th>
-            <th>Intel Xeon CPU 2.3 GHz</th>
             <th>Intel Core i9-7900 3.3 GHZ</th>
-            <th>GeForce GTX 1080</th>
+            <th>Tesla V100</th>
         </tr>
     </thead>
     <tbody align="center">
         <tr>
-            <td>pascalvoc_dataset</td>
-            <td>0.885 seconds/image</td>
-            <td>0.793 seconds/image</td>
-            <td>0.295 seconds/image</td>
-            <td>0.0592 seconds/image</td>
+            <td>COCO Dataset</td>
+            <td>0.259 seconds/image</td>
+            <td>0.281 seconds/image</td>
+            <td>0.0691 seconds/image</td>
         </tr>
     </tbody>
 </table>
