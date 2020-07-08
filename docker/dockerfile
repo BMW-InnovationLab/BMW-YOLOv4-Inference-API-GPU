@@ -17,7 +17,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-rec
   libopencv-dev 
 
 RUN git clone http://github.com/opencv/opencv.git && cd opencv \
-	  && git checkout 3.3.1 					\
+	  && git checkout 4.3.0 					\
     && mkdir build && cd build              \
     && cmake -D CMAKE_BUILD_TYPE=RELEASE    \
         -D CMAKE_INSTALL_PREFIX=/usr/local  \
