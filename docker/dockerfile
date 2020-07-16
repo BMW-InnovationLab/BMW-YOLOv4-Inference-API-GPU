@@ -19,7 +19,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-rec
 #Checkout Version should be 4.4.0 when the new version is released 
 
 RUN git clone http://github.com/opencv/opencv.git && cd opencv \
-	  && git checkout master 					\
+	  && git checkout a216b8bf874fc4d66e5cf4c949d4e6acf15e4de5 					\
     && mkdir build && cd build              \
     && cmake -D CMAKE_BUILD_TYPE=RELEASE    \
         -D CMAKE_INSTALL_PREFIX=/usr/local  \

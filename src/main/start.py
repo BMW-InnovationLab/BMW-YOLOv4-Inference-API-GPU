@@ -16,7 +16,7 @@ sys.path.append('./inference')
 
 dl_service = DeepLearningService()
 error_logging = Error()
-app = FastAPI(version='1.0', title='BMW InnovationLab YOLOv3-v4 darknet inference Automation',
+app = FastAPI(version='1.0', title='BMW InnovationLab YOLOv4-v3 darknet inference Automation',
 			  description="<b>API for performing YOLOv3-v4 darknet inference</b></br></br>"
 						  "<b>Contact the developers:</b></br>"
 						  "<b>Antoine Charbel: <a href='mailto:antoine.charbel@inmind.ai'>antoine.charbel@inmind.ai</a></b></br>"

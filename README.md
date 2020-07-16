@@ -1,14 +1,16 @@
 # YOLOv4-v3 Darknet GPU Inference API
 
-This is a repository for an object detection inference API using the Yolov3 Darknet framework.
+This is a repository for an object detection inference API using the Yolov4 Darknet framework.
 
-This Repository has also support for state of the art Yolov4 models 
+This Repository has also cross compatibility for Yolov3 darknet models.
 
 This repo is based on [AlexeyAB darknet repository](https://github.com/AlexeyAB/darknet).
 
 The inference REST API works on GPU. It's supported only on Linux Operating systems.
 
-Models trained using our training automation Yolov3 and Yolov4  repository can be deployed in this API. Several object detection models can be loaded and used at the same time.
+Models trained using our training automation Yolov4 and Yolov3  repository can be deployed in this API. Several object detection models can be loaded and used at the same time.
+
+To choose Yolov4 instead of Yolov3 training just change the inference engine name in the config.json inside your model folder. 
 
 ![predict image](./docs/4.gif)
 
@@ -161,7 +163,7 @@ Inside each subfolder there should be a:
 
   ```json
     {
-      "inference_engine_name": "yolov3_darknet_detection",
+      "inference_engine_name": "yolov4_darknet_detection",
       "detection_threshold": 0.6,
       "nms_threshold": 0.45,
       "hier_threshold": 0.5,
@@ -172,6 +174,7 @@ Inside each subfolder there should be a:
   ```
   P.S
 
+  - **You  can choose "yolov4_darknet_detection"  for Yolo v4 model or "yolov3_darknet_detection" for Yolo v3 model**
   - You can change detection_threshold, nms_threshold, and hier_threshold values while running the API
   - The API will return bounding boxes with a detection higher than the detection_threshold value. A high detection_threshold can show you only accurate predictions
 
