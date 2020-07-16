@@ -1,4 +1,4 @@
-# YOLOv3-v4 Darknet GPU Inference API
+# YOLOv4-v3 Darknet GPU Inference API
 
 This is a repository for an object detection inference API using the Yolov3 Darknet framework.
 
