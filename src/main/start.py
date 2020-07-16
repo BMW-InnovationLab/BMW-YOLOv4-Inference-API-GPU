@@ -207,9 +207,10 @@ async def list_model_labels(model_name: str):
 
 @app.get('/models/{model_name}/config')
 async def list_model_config(model_name: str):
-	"""
-	Lists all the model's configuration.
-	:param model_name: Model name
+	"""=======
+app = FastAPI(version='1.0', title='BMW InnovationLab YOLOv3-v4 darknet inference Automation',
+>>>>>>> master
+e
 	:return: List of model's configuration
 	"""
 	try:

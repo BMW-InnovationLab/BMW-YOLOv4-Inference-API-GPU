@@ -4,6 +4,8 @@ This is a repository for an object detection inference API using the Yolov4 Dark
 
 This Repository has also cross compatibility for Yolov3 darknet models.
 
+This Repository has also support for state of the art Yolov4 models 
+
 This repo is based on [AlexeyAB darknet repository](https://github.com/AlexeyAB/darknet).
 
 The inference REST API works on GPU. It's supported only on Linux Operating systems.
