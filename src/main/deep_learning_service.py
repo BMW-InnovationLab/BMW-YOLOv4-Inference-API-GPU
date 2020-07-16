@@ -1,3 +1,4 @@
+import time
 import os
 import re
 import json
@@ -5,7 +6,6 @@ import uuid
 from inference.inference_engines_factory import InferenceEngineFactory
 from inference.exceptions import ModelNotFound, InvalidModelConfiguration, ModelNotLoaded, InferenceEngineNotFound, \
     InvalidInputData, ApplicationError
-
 
 class DeepLearningService:
 
@@ -43,7 +43,7 @@ class DeepLearningService:
             return True
         model_path = os.path.join(self.base_models_dir, model_name)
         try:
-            self.models_dict[model_name] = InferenceEngineFactory.get_engine(model_path)
+            self.models_dict[model_name] =   InferenceEngineFactory.get_engine(model_path)
             return True
         except ApplicationError as e:
             raise e
@@ -130,6 +130,8 @@ class DeepLearningService:
         :param model_name: Model name
         :return: List of model labels
         """
+        if model_name not in self.models_hash_dict and model_name not in self.models_hash_dict.values():
+            raise ModelNotFound()
         if not self.model_loaded(model_name):
             self.load_model(model_name)
         return self.models_dict[model_name].labels
@@ -140,6 +142,8 @@ class DeepLearningService:
         :param model_name: Model name
         :return: A list of mode's labels with their hashed values
         """
+        if model_name not in self.models_hash_dict and model_name not in self.models_hash_dict.values():
+            raise ModelNotFound 
         if re.match(r'[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}', model_name,
                     flags=0):
             for key, value in self.models_hash_dict.items():
@@ -155,6 +159,7 @@ class DeepLearningService:
             if key not in models:
                 del self.labels_hash_dict[key]
         return self.labels_hash_dict[model_name]
+       
 
     def get_config(self, model_name):
         """
@@ -162,6 +167,8 @@ class DeepLearningService:
         :param model_name: Model name
         :return: List of model's configuration
         """
+        if model_name not in self.models_hash_dict and model_name not in self.models_hash_dict.values():
+            raise ModelNotFound 
         if not self.model_loaded(model_name):
             self.load_model(model_name)
         return self.models_dict[model_name].configuration

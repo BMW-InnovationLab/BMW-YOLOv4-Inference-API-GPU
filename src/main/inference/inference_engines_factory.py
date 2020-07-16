@@ -3,7 +3,6 @@ import json
 from inference.exceptions import ModelNotFound, ApplicationError, InvalidModelConfiguration, InferenceEngineNotFound, \
 	ModelNotLoaded
 
-
 class InferenceEngineFactory:
 
 	@staticmethod
@@ -14,7 +13,7 @@ class InferenceEngineFactory:
 		:return: The model's instance
 		"""
 		if not os.path.exists(path_to_model):
-			raise ModelNotFound()
+			raise ModelNotFound
 		try:
 			configuration = json.loads(open(os.path.join(path_to_model, 'config.json')).read())
 		except Exception:
