@@ -148,6 +148,14 @@ Performs inference on specified model and a list of images, and returns bounding
 The folder "models" contains subfolders of all the models to be loaded.
 Inside each subfolder there should be a:
 
+```
+~/BMW-YOLOv4-Inference-API-GPU/models/<name-of-the-model>/config.json
+~/BMW-YOLOv4-Inference-API-GPU/models/<name-of-the-model>/obj.data
+~/BMW-YOLOv4-Inference-API-GPU/models/<name-of-the-model>/obj.names
+~/BMW-YOLOv4-Inference-API-GPU/models/<name-of-the-model>/yolo-obj.cfg
+~/BMW-YOLOv4-Inference-API-GPU/models/<name-of-the-model>/yolo-obj.weights
+```
+
 - Cfg file (yolo-obj.cfg): contains the configuration of the model
 
 - data file (obj.data): contains number of classes and names file path
