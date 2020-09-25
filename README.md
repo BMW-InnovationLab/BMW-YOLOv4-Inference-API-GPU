@@ -14,6 +14,18 @@ Models trained using our training automation Yolov4 and Yolov3  repository can b
 
 To choose Yolov4 instead of Yolov3 training just change the inference engine name in the config.json inside your model folder. 
 
+This repo can be deployed using either **docker** or **docker swarm**.
+
+Please use **docker swarm** only if you need to:
+
+* Provide redundancy in terms of API containers: In case a container went down, the incoming requests will be redirected to another running instance.
+
+* Coordinate between the containers: Swarm will orchestrate between the APIs and choose one of them to listen to the incoming request.
+
+* Scale up the Inference service in order to get a faster prediction especially if there's traffic on the service.
+
+If none of the aforementioned requirements are needed, simply use **docker**.
+
 ![predict image](./docs/4.gif)
 
 ## Prerequisites
@@ -66,7 +78,13 @@ sudo docker build --build-arg http_proxy='' --build-arg https_proxy='' -t yolov4
 
 ## Run The Docker Container
 
-To run the API go the to the API's directory and run the following:
+As mentioned before, this container can be deployed using either **docker** or **docker swarm**.
+
+If you wish to deploy this API using **docker**, please issue the following run command.
+
+If you wish to deploy this API using **docker swarm**, please refer to following link [docker swarm documentation](./README-docker_swarm.md). After deploying the API with docker swarm, please consider returning to this documentation for further information about the API endpoints as well as the model structure sections.
+
+To run the API, go the to the API's directory and run the following:
 
 #### Using Linux based docker:
 
