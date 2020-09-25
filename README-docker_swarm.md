@@ -1,4 +1,4 @@
-# YOLOv3 Darknet GPU Inference API with docker swarm
+# YOLOv4-v3 Darknet GPU Inference API with docker swarm
 
 Please use **docker swarm** only if you need to:
 
